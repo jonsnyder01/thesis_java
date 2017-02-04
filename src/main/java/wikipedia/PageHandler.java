@@ -1,9 +1,9 @@
 package wikipedia;
 
-import info.bliki.wiki.filter.WikipediaParser;
 import kopi.ArticleProcessor;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * Created by josnyder on 1/28/17.
@@ -20,12 +20,13 @@ public class PageHandler {
 		this.linkWriter = linkWriter;
 	}
 
-	public void handlePage(long id, int namespace, String title, String text) {
+	public void handlePage(long id, int namespace, String title, String text) throws IOException {
 		if (namespace != 0) {
 			return;
 		}
-		
+
 		String plainText = wikimediaParser.parsePlainText(text);
 		articleProcessor.processArticle(title, text);
+		wikimediaParser.getLinks()
 	}
 }
